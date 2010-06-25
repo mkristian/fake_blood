@@ -1,4 +1,4 @@
-require 'base'
+require File.join(File.dirname(__FILE__), 'base')
 require "rubygems"   # rm that  
 require 'dm-core'
 require 'dm-migrations'
@@ -31,13 +31,12 @@ module DataMapperOrm
 
   def self.setup( opts = {})
     connection_options = opts[:connection_options] ||
-            {           
-              :orm => "data_mapper",
-              :adapter => "mysql",
-              :host => "localhost",
-              :database => "simple_orm_benchmark",
-              :user => "root",
-              :password => "root"
+            {         
+               :orm => "data_mapper",
+               :adapter => "hibernate", 
+               :dialect => "H2", 
+               :username => "sa", 
+               :url => "jdbc:h2:target/simple_orm_benchmark_h2"
             }
     # DataMapper::Logger.new($stdout, :debug)
     DataMapper.setup(:default, connection_options)

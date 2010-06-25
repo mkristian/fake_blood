@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>bench</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+   <repositories>
+    <repository>
+      <id>saumya</id>
+      <url>http://mojo.saumya.de/</url>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+    <repository>
+      <id>rubygems-releases</id>
+      <url>http://gems.saumya.de/releases</url>
+      <!-- in case you need to use a local gem-proxy -->
+<!--
+     <url>http://localhost:8080/releases</url>
+ -->
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-hibernate-adapter</artifactId>
+      <version>0.1-SNAPSHOT</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-migrations</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <dependency>
+      <groupId>rubygems</groupId>
+      <artifactId>dm-transactions</artifactId>
+      <version>${dm.version}</version>
+      <type>gem</type>
+    </dependency>
+    <!-- database for hibernate -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.2.128</version>
+    </dependency>
+    <!-- logging for hibernate -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.2</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.14</version>
+    </dependency>
+  </dependencies>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jruby.plugins.version>0.20.0-SNAPSHOT</jruby.plugins.version>
+    <dm.version>1.0.0</dm.version>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>de.saumya.mojo</groupId>
+        <artifactId>gem-maven-plugin</artifactId>
+	<version>${jruby.plugins.version}</version>
+	<extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+      
+</project>
